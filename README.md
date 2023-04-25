@@ -13,7 +13,7 @@ To get started with the project, follow these steps:
 - Create a virtual environment by running `python -m venv <name_env>`. If your operating system is Linux or MacOS, you can activate the virtual environment by running `source <name_env>/bin/activate`.
 - Install the dependencies listed in `requirements.txt` by running `pip install -r requirements.txt`.
 - After installing the dependencies, run the migrations by executing `python manage.py migrate` in the terminal.
-- Finally, run `python manage.py collectstatic --noinput` to collect all static files, and start the server by running python manage.py runserver.
+- Finally, run `python manage.py collectstatic --noinput` to collect all static files, and start the server by running `python manage.py runserver`.
 
 ## How to Setup Database?
 To create a new PostgreSQL database for the project, follow these steps:
