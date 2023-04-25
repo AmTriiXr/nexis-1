@@ -13,17 +13,18 @@ To get started with the project, follow these steps:
 - Create a virtual environment by running `python -m venv <name_env>`. If your operating system is Linux or MacOS, you can activate the virtual environment by running `source <name_env>/bin/activate`.
 - Install the dependencies listed in `requirements.txt` by running `pip install -r requirements.txt`.
 - After installing the dependencies, run the migrations by executing `python manage.py migrate` in the terminal.
-- Finally, run `python manage.py collectstatic --noinput` to collect all static files, and start the server by running python manage.py runserver.
+- Finally, run `python manage.py collectstatic --noinput` to collect all static files, and start the server by running `python manage.py runserver`.
 
 ## How to Setup Database?
 To create a new PostgreSQL database for the project, follow these steps:
  - Make sure that PostgreSQL is installed on your system. If not, you can download it from the PostgreSQL website and install it on your system.
  - Open a command prompt or terminal window and navigate to the directory where PostgreSQL is installed.
  - Type the following command to log in to the PostgreSQL command-line interface: `psql -U postgres` This command will log you in as the default PostgreSQL superuser.
- - Once you are logged in, type the following command to create a new database: `CREATE DATABASE <your_database_name>;` Replace <your_database_name> with the name you want to give to your database
+ - Once you are logged in, type the following command to create a new database: `CREATE DATABASE <your_database_name>;` Replace `<your_database_name>` with the name you want to give to your database
  - Verify that the new database has been created by typing the following command: `\l`
 This will display a list of all databases that are currently available on your PostgreSQL server
-That's it! You have now created a new PostgreSQL database for your project. You can now use this database to store data for your Nexis application.
+
+That's it! You have now created a new PostgreSQL database for your project. 
 
 Once you have installed PostgreSQL, you can proceed with the following steps to set up the database for Nexis:
 
