@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+{% block title %}{% trans "Contact" %} |{% endblock title %}
+{% block content %}
+{% block class %}bg-white{% endblock class %}
+
+
+<header class="inner-page-header">
+    <div class="container">
+        <div class="inner-header-content">
+            <h1>{% trans "Contact" %}</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="{% url 'index' %}">{% trans "Home" %}</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">{% trans "Contact" %}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<section class="contact-info-section pt-100 pb-100">
+    <div class="container">
+        <div class="section-title section-title-lg">
+            <small>{% trans "Contact Information" %}</small>
+            <h2>{% trans "Let's Talk About For Your Business" %}</h2>
+            <p>{% trans "Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris." %}</p>
+        </div>
+
+        <div class="contact-info mb-15">
+            <div class="row">
+                <div class="col-md-6 col-lg-4 pb-30">
+                    <div class="contact-info-item">
+                        <div class="contact-info-header">
+                            <div class="contact-info-header-icon">
+                                <i class="icofont-location-pin"></i>
+                            </div>
+                            <div class="contact-info-header-text">
+                                <h3>{% trans "Location" %}</h3>
+                                <p>{% trans "Visit Our Office" %}</p>
+                            </div>
+                        </div>
+                        <div class="contact-info-body">
+                            <p>{% trans "214, Queens Road 4th Cross" %}</p>
+                            <p>{% trans "New York, 5240" %}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 pb-30">
+                    <div class="contact-info-item">
+                        <div class="contact-info-header">
+                            <div class="contact-info-header-icon">
+                                <i class="icofont-ui-call"></i>
+                            </div>
+                            <div class="contact-info-header-text">
+                                <h3>{% trans "Make A Call" %}</h3>
+                                <p>{% trans "Let’s Talk with our Experts" %}</p>
+                            </div>
+                        </div>
+                        <div class="contact-info-body">
+                            <p>
+                                <a href="tel:393917008953">{% trans "+39 391 7008953" %}</a>
+                            </p>
+                            <p>{% trans "Mon - Fri: 09.00 to 17.00" %}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 pb-30 offset-lg-0 offset-md-3">
+                    <div class="contact-info-item">
+                        <div class="contact-info-header">
+                            <div class="contact-info-header-icon">
+                                <i class="icofont-email"></i>
+                            </div>
+                            <div class="contact-info-header-text">
+                                <h3>{% trans "Send An Email" %}</h3>
+                                <p>{% trans "Don’t Hesitate to Email" %}</p>
+                            </div>
+                        </div>
+                        <div class="contact-info-body">
+                            <p>
+                                <a href="mailto:info@skailar.net">info@skailar.net</a>
+                            </p>
+                            <p>
+                                <a href="mailto:support@skailar.net">support@skailar.net</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="contact-form-section pb-100">
+    <div class="container">
+
+        <div class="contact-form-box">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="contact-map contact-form-item">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387193.305935303!2d-74.25986548248684!3d40.69714941932609!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sbd!4v1611822084496!5m2!1sen!2sbd"></iframe>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="contact-form-item desk-pad-left-40">
+                        <div class="section-title text-start section-title-left">
+                            <h2>{% trans "Let's Get In Touch!" %}</h2>
+                            <p>{% trans "Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit" %}</p>
+                        </div>
+                        <form class="contact-form" id="contactForm">
+                            {% csrf_token %}
+                            <div class="form-group mb-20">
+                                <input type="text" name="name" id="name" class="form-control" placeholder='{% trans "Your Name*" %}' required data-error='{% trans "Please enter your name" %}' />
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            <div class="form-group mb-20">
+                                <input type="text" name="email" id="email" class="form-control" placeholder='{% trans "Your Email*" %}' required data-error='{% trans "Please enter your email" %}' />
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            <div class="form-group mb-20">
+                                <input type="text" name="phone" id="phone" class="form-control" placeholder='{% trans "Your Phone*" %}' required data-error='{% trans "Please enter your phone number" %}' />
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            <div class="form-group mb-20">
+                                <input type="text" name="subject" id="subject" class="form-control" placeholder='{% trans "Your Subject*" %}' required data-error='{% trans "Please enter your subject" %}' />
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            <div class="form-group mb-20">
+                                <textarea name="message" class="form-control" id="message" rows="3" placeholder='{% trans "Your Question*" %}'></textarea>
+                            </div>
+                            <div class="input-checkbox mb-20">
+                                <input type="checkbox" id="contact1">
+                                <label for="contact1">{% trans "Accept" %} <a href="{% url 'terms_of_service' %}">{% trans "Terms of Service" %}</a> {% trans "and" %} <a href="{% url 'privacy_policy' %}">{% trans "Privacy Policy" %}</a></label>
+                            </div>
+                            <div class="form-button">
+                                <button class="btn main-btn full-width" type="submit">{% trans "Send Message" %}</button>
+                                <div id="msgSubmit"></div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+{% endblock content %}

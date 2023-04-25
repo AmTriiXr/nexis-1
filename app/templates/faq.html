@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+{% block title %}{% trans "FAQ's" %} |{% endblock title %}
+{% block content %}
+{% block class %}bg-white{% endblock class %}
+
+
+<header class="inner-page-header">
+    <div class="container">
+        <div class="inner-header-content">
+            <h1>{% trans "FAQ's" %}</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="{% url 'index' %}">{% trans "Home" %}</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">{% trans "FAQ's" %}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<section class="faq-section pt-100 pb-70">
+    <div class="container">
+        <div class="accordion" id="accordionParent">
+            <div class="row">
+                <div class="col-lg-6 pb-30">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">{% trans "What is your company's area of expertise?" %}</button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionParent">
+                            <div class="accordion-body">{% trans "Our company specializes in developing machine learning algorithms for predictive analytics, natural language processing, and computer vision applications" %}</div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">{% trans "What kind of projects does your team work on?" %}</button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionParent">
+                            <div class="accordion-body">{% trans "Our team works on a variety of projects, including developing custom machine learning models for clients, conducting data analysis, and creating predictive models for a wide range of industries." %}</div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">{% trans "What programming languages and tools do you use for machine learning?" %}</button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionParent">
+                            <div class="accordion-body">{% trans "We primarily use Python for our machine learning projects and libraries such as Scikit-Learn, TensorFlow, and PyTorch. We also utilize cloud computing platforms like Amazon Web Services (AWS) and Google Cloud Platform (GCP) for large-scale machine learning projects." %}</div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingFour">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">{% trans "How do you stay up-to-date with the latest developments in machine learning?" %}</button>
+                        </h2>
+                        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionParent">
+                            <div class="accordion-body">{% trans "Our team members are actively involved in the machine learning community and regularly attend conferences and workshops to stay informed about the latest developments in the field. We also encourage ongoing learning and professional development among our team members." %}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 pb-30">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingSix">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">{% trans "How do you ensure the accuracy of your machine learning models?" %} </button>
+                        </h2>
+                        <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionParent">
+                            <div class="accordion-body">{% trans "We use a variety of techniques to ensure the accuracy of our machine learning models, including cross-validation, hyperparameter tuning, and ensemble methods. Additionally, we continuously monitor and refine our models as new data becomes available." %}</div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingSeven">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="true" aria-controls="collapseSeven">{% trans "Can you explain the difference between supervised and unsupervised machine learning?" %}</button>
+                        </h2>
+                        <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#accordionParent">
+                            <div class="accordion-body">{% trans "Supervised learning involves training a model on labeled data to predict outcomes for new, unlabeled data. Unsupervised learning, on the other hand, involves discovering patterns and relationships in data without pre-existing labels." %}</div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingEight">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="true" aria-controls="collapseEight">{% trans "How do you handle data privacy and security concerns?" %}</button>
+                        </h2>
+                        <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight" data-bs-parent="#accordionParent">
+                            <div class="accordion-body">{% trans "We take data privacy and security very seriously and adhere to strict industry standards and best practices. We use secure data storage and transmission methods, and only collect and use data with our clients' explicit consent." %}</div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingNine">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="true" aria-controls="collapseNine">{% trans "What kind of businesses or industries can benefit from your machine learning solutions?" %}</button>
+                        </h2>
+                        <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine" data-bs-parent="#accordionParent">
+                            <div class="accordion-body">{% trans "Our machine learning solutions can be applied to a wide range of industries, including healthcare, finance, e-commerce, and marketing. We work with businesses of all sizes to develop customized solutions that meet their unique needs." %}</div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTen">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTen" aria-expanded="true" aria-controls="collapseTen">{% trans "What is your approach to project management?" %}</button>
+                        </h2>
+                        <div id="collapseTen" class="accordion-collapse collapse" aria-labelledby="headingTen" data-bs-parent="#accordionParent">
+                            <div class="accordion-body">{% trans "We use agile project management methodologies to ensure that our projects are delivered on time and within budget. This allows us to work closely with our clients and adapt to changing requirements throughout the project lifecycle." %}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

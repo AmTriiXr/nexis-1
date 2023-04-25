@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+{% block title %}{% trans "Cart" %} |{% endblock title %}
+{% block content %}
+{% block class %}bg-white{% endblock class %}
+<header class="inner-page-header">
+    <div class="container">
+        <div class="inner-header-content">
+            <h1>{% trans "Cart" %}</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="{% url 'index' %}">{% trans "Home" %}</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">{% trans "Cart" %}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<section class="cart-section pt-100 pb-70">
+    <div class="container">
+        <div class="cart-section-inner">
+            <div class="cart-section-item cart-section-contents">
+                <div class="cart-table">
+                    <table>
+                        {% if order_items %}
+                        <thead>
+                            <tr>
+                                <th>{% trans "Product" %}</th>
+                                <th>{% trans "ID" %}</th>
+                                <th>{% trans "Unit Price" %}</th>
+                                <th>{% trans "Quantity" %}</th>
+                                <th>{% trans "Total" %}</th>
+                                <th>{% trans "Action" %}</th>
+                            </tr>
+                        </thead>
+                        {% endif %}
+                        <tbody>
+                            {% for item in order_items %}
+                            <tr>
+                                <td>
+                                    <div class="product-table-info">
+                                        <div class="product-table-thumb">
+                                            <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                                        </div>
+                                        <span>{{ item.product.name }}</span>
+                                    </div>
+                                </td>
+                                <td class="weight-500">{{ item.product.modello }}</td>
+                                <td>${{ item.product.price }}</td>
+                                <td>
+                                    <div class="cart-quantity">
+                                        <button onclick="location.href='{% url 'decrease_quantity' item.id %}'" class="qu-btn dec">-</button>
+                                        <input type="text" class="qu-input" value="{{ item.quantity }}" readonly>
+                                        <button onclick="location.href='{% url 'add_to_cart' item.product.slug %}'" class="qu-btn dec">+</button>
+                                    </div>
+                                </td>
+                                <td>${{ item.get_total_price }}</td>
+                                <td class="cancel"><a href="{% url 'cart_remove' item.product.slug %}"><i class="icofont-close"></i></a></td>       
+                            </tr>
+                            {% empty %}
+                                <center>
+                                    <p>{% trans "Your cart is currently empty. Start adding products that interest you to complete your order." %}</p>
+                                    <a class="btn main-btn" href="{% url 'products' %}">{% trans "Shop now" %}</a>
+                                </center>
+                            {% endfor %} 
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row justify-content-between align-items-center mt-30">
+                    {% if order_items %}
+                    <div class="col-sm-12 col-md-4 col-lg-3">
+                        <div class="cart-update cart-info-item">
+                            <a href="{% url 'products' %}" class="btn main-btn full-width">
+                                {% trans "Continue Shopping" %}
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-7 col-lg-5">
+                        <div class="cart-coupon cart-info-item">
+                            <form>
+                                <div class="form-group">
+                                    <input type="email" class="form-control" placeholder="Enter Coupon Code">
+                                    <button class="btn main-btn">{% trans "Apply Coupon" %}</button>
+                                  </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-sm-12 col-md-6 col-lg-6 pb-30">
+                        <div class="cart-image">
+                            <img src="{% static 'assets/images/cart.png' %}" alt="cart">
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6 pb-30">
+                        <div class="cart-details default-box-shadow">
+                            <h3 class="cart-details-title">{% trans "Cart Totals" %}</h3>
+                            <div class="cart-total-box">
+                                <div class="cart-total-item">
+                                    <h4>{% trans "Subtotal" %}</h4>
+                                    <p>{% trans "$" %}{{ order.get_subtotal_order_price }}</p>
+                                </div>
+                                <div class="cart-total-item">
+                                    <h4>Shipping</h4>
+                                    <p>{% trans "$" %}{{ order.calculate_shipping_cost }}</p>
+                                </div>
+                                <div class="cart-total-item">
+                                    <h4>Total</h4>
+                                    <p>{% trans "$" %}{{ order.get_total_order_price }}</p>
+                                </div>
+                            </div>
+                            <a href="{% url 'checkout' %}" class="btn main-btn">{% trans "Make Payment" %}</a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

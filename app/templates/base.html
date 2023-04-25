@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+{% load static i18n %}
+<html lang="en"> 
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="Skailar">
+        <meta name="keywords" content="Machine Learning, Intelligenza Artificiale, Startup, Apprendimento Automatico, Analisi dei Dati, Modelli Predittivi, Algoritmi di Apprendimento, Deep Learning, Reti Neurali, Big Data, Intelligenza Artificiale Distribuita, Intelligenza Artificiale su Cloud, Automazione, Intelligenza Artificiale Conversazionale, Visione Artificiale, Riconoscimento del Linguaggio Naturale, Data Science, Analytics, Tecnologie Intelligenti, Artificial Intelligence, Startup, Automatic Learning, Data Analysis, Predictive Models, Learning Algorithms, Deep Learning, Neural Networks, Big Data, Distributed Artificial Intelligence, Cloud Artificial Intelligence, Automation, Conversational Artificial Intelligence, Computer Vision, Natural Language Processing, Data Science, Analytics, Intelligent Technologies">
+        <meta name="author" content="AmTriiX">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />        
+        <title>{% block title %}{% endblock title %} Skailar</title>
+        <link rel="icon" href="{% static 'assets/images/favicon.png' %}" type="image/png" sizes="16x16">
+        <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{% static 'assets/css/animate.min.css' %}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{% static 'assets/css/owl.carousel.min.css' %}"  type="text/css" media="all" />
+        <link rel="stylesheet" href="{% static 'assets/css/owl.theme.default.min.css' %}"  type="text/css" media="all" />
+        <link rel="stylesheet" href="{% static 'assets/css/meanmenu.min.css' %}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{% static 'assets/css/magnific-popup.min.css' %}" type="text/css" media="all" />
+        <link rel='stylesheet' href="{% static 'assets/css/icofont.min.css' %}" type="text/css" media="all" />
+        <link rel='stylesheet' href="{% static 'assets/css/flaticon.css' %}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{% static 'assets/css/nice-select.css' %}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}" type="text/css" media="all" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
+    </head>
+    <body>
+        <div class="fixed-top {% block class %}{% endblock class %}">
+            <div class="topbar">
+                <div class="container">
+                    <div class="topbar-inner">
+                        <div class="row justify-content-center justify-content-lg-between">
+                            <div class="topbar-item topbar-left">
+                                <ul class="topbar-list">
+                                    <li>
+                                        <i class="icofont-headphone"></i>
+                                        <a href="tel:393917008953">+39 391 7008953</a>
+                                    </li>
+                                    <li>
+                                        <i class="icofont-ui-message"></i>
+                                        <a href="mailto:info@skailar.net">info@skailar.net</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="topbar-item topbar-right">
+                                <ul class="topbar-list">
+                                    <li>
+                                        <i class="icofont-paper-plane"></i>
+                                        <a href="{% url 'contact' %}">{% trans "Request For Demo" %}</a>
+                                    </li>
+                                    {% comment %} <form action="{% url 'set_language' %}" method="POST">{% csrf_token %}
+                                        <input type="hidden" name="text" value="{{ redirect_to }}">
+                                        <select name="language" id="">
+                                            {% get_current_language as LANGUAGE_CODE %}
+                                            {% get_available_languages as LANGUAGES %}
+                                            {% get_language_info_list for LANGUAGES as languages %}
+                                            {% for language in languages %}
+                                                <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected {% endif %} class="bg-success">{{ language.name_local|capfirst }} ({{ language.code|upper }})</option>
+                                            {% endfor %}
+                                        </select>
+                                        <input type="submit" value="GO" class="btn btn-primary" />
+                                    </form> {% endcomment %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="navbar-area sticky-black">
+                <div class="container">
+                    <div class="mobile-nav">
+                        <a href="{% url 'index' %}" class="mobile-brand">
+                            <img src="{% static 'assets/images/logo.png' %}" alt="logo" class="logo">
+                        </a>
+                        <div class="navbar-option">
+                            {% if user.is_authenticated %}
+                            <div class="navbar-option-item">
+                                <a type="button" href="{% url 'my_account' %}"><i class="flaticon-user" ></i></a>
+                            </div>
+                            {% endif %}
+                            <div class="navbar-option-item side-topbar-option">
+                                <button type="button">
+                                    <i class="flaticon-grid" ></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="main-nav">
+                    <div class="container">
+                        <nav class="navbar navbar-expand-md navbar-light">
+                            <a class="navbar-brand" href="{% url 'index' %}">
+                                <img src="{% static 'assets/images/logo.png' %}" alt="logo" class="logo">
+                            </a>
+                            <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
+                                <ul class="navbar-nav mx-auto">
+                                    <li class="nav-item">{% if request.path == '/' %}<a href="{% url 'index' %}" class="active nav-link">{% trans "Home" %}</a>{% else %}<a href="{% url 'index' %}" class="nav-link">{% trans "Home" %}</a>{% endif %}</li>
+                                    <li class="nav-item">{% if request.path == '/about-us' %}<a href="{% url 'about' %}" class="active nav-link">{% trans "About Us" %}</a>{% else %}<a href="{% url 'about' %}" class="nav-link">{% trans "About Us" %}</a>{% endif %}</li>
+                                    <li class="nav-item">{% if request.path == '/services' %}<a href="{% url 'services' %}" class="active nav-link">{% trans "Services" %}</a>{% else %}<a href="{% url 'services' %}" class="nav-link">{% trans "Services" %}</a>{% endif %}</li>
+                                    <li class="nav-item">{% if request.path == '/products' %}<a href="{% url 'products' %}" class="active nav-link">{% trans "Products" %}</a>{% else %}<a href="{% url 'products' %}" class="nav-link">{% trans "Products" %}</a>{% endif %}</li>
+                                    <li class="nav-item">{% if request.path == '/pricing' %}<a href="{% url 'pricing' %}" class="active nav-link">{% trans "Pricing" %}</a>{% else %}<a href="{% url 'pricing' %}" class="nav-link">{% trans "Pricing" %}</a>{% endif %}</li>
+                                    <li class="nav-item">{% if request.path == '/careers' %}<a href="{% url 'careers' %}" class="active nav-link">{% trans "Careers" %}</a>{% else %}<a href="{% url 'careers' %}" class="nav-link">{% trans "Careers" %}</a>{% endif %}</li>
+                                    <li class="nav-item">{% if request.path == '/news' %}<a href="{% url 'blog' %}" class="active nav-link">{% trans "News" %}</a>{% else %}<a href="{% url 'blog' %}" class="nav-link">{% trans "News" %}</a>{% endif %}</li>
+                                    <li class="nav-item">{% if request.path == '/contact' %}<a href="{% url 'contact' %}" class="active nav-link">{% trans "Contact" %}</a>{% else %}<a href="{% url 'contact' %}" class="nav-link">{% trans "Contact" %}</a>{% endif %}</li>
+                                    <li class="nav-item">
+                                        {% if request.path == '/legal/privacy' or request.path == '/legal/terms' %}<a class="nav-link dropdown-toggle active">{% trans "Legal" %}</a>{% else %}<a class="nav-link dropdown-toggle">{% trans "Legal" %}</a>{% endif %}
+                                        <ul class="dropdown-menu">
+                                            <li class="nav-item  nav-item-1">{% if request.path == '/legal/privacy' %}<a href="{% url 'privacy_policy' %}" class="active nav-link">{% trans "Privacy Policy" %}</a>{% else %}<a href="{% url 'privacy_policy' %}" class="nav-link">{% trans "Privacy Policy" %}</a>{% endif %}</li>
+                                            <li class="nav-item  nav-item-2">{% if request.path == '/legal/terms' %}<a href="{% url 'terms_of_service' %}" class="nav-link active">{% trans "Terms of Service" %}</a>{% else %}<a href="{% url 'terms_of_service' %}" class="nav-link">{% trans "Terms of Service" %}</a>{% endif %}</li>
+                                        </ul>
+                                    </li>
+                                </ul>                                
+                            </div>
+                            <div class="navbar-option">
+                                <div class="navbar-option-item">
+                                    {% if user.is_authenticated %}<a href="{% url 'my_account' %}" class="btn main-btn">{% trans "Account" %}</a>
+                                    {% if order_items %}<a href="{% url 'cart' %}" class="btn"><i class="bi bi-cart4"></i></a>
+                                    {% else %}<a href="{% url 'cart' %}" class="btn"><i class="bi bi-cart3"></i></a>{% endif %}
+                                    {% else %}<a href="{% url 'login' %}" class="btn main-btn">{% trans "Login Or Register" %}</a>{% endif %}
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        {% block content %}{% endblock content %}
+        
+        <section class="newsletter-section pt-min-100 pb-100 page-bg page-bg-2 page-bg-overlay">
+            <div class="container position-relative">
+                <div class="section-title section-title-white">
+                    <h2>{% trans "Subscribe For Newsletter" %}</h2>
+                    <p>{% trans "Subscribe to our newsletter & stay updated" %}</p>
+                </div>
+                <form class="newsletter-form">
+                    <div class="form-group m-0 newsletter-form">
+                        <input type="text" name="EMAIL" id="emails" class="form-control" placeholder="Enter Address*" required>
+                        <button class="btn main-btn" type="submit">{% trans "Subscribe" %}</button>
+                    </div>
+                    <div id="validator-newsletter" class="form-result"></div>
+                </form>
+            </div>
+        </section>        
+
+        <footer class="bg-off-white footer">
+            <div class="footer-shapes">
+                <div class="footer-shape">
+                    <img src="{% static 'assets/images/shape-1.png' %}" alt="shape">
+                </div>
+                <div class="footer-shape footer-round-shape">
+                    <img src="{% static 'assets/images/shape-2.png' %}" alt="shape">
+                </div>
+            </div>
+            <div class="footer-upper pt-100 pb-80 position-relative">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6 col-lg-3">
+                            <div class="footer-content-item">
+                                <div class="footer-logo">
+                                    <a href="{% url 'index' %}"><img src="{% static 'assets/images/logo.png' %}" alt="logo"></a>
+                                </div>
+                                <div class="footer-details">
+                                    <p>{% trans "Skailar is your trusted solution for improving productivity and business efficiency. Thank you for choosing Skailar." %}</p>
+                                    <ul class="social-list social-list-btn">
+                                        <li>
+                                            <a href="https://www.facebook.com/" target="_blank"><i class="icofont-facebook"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="https://twitter.com/" target="_blank"><i class="icofont-twitter"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="https://www.instagram.com/" target="_blank"><i class="icofont-instagram"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="https://www.pinterest.com/" target="_blank"><i class="icofont-pinterest"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-3">
+                            <div class="footer-content-list footer-content-item desk-pad-left-70">
+                                <div class="footer-content-title">
+                                    <h3>{% trans "Useful Links" %}</h3>
+                                </div>
+                                <ul class="footer-details footer-list">
+                                    <li><a href="{% url 'demo_product' %}">{% trans "Demo Product" %}</a></li>
+                                    <li><a href="{% url 'case' %}">{% trans "Case Study" %}</a></li>
+                                    <li><a href="{% url 'products' %}">{% trans "Products" %}</a></li>
+                                    <li><a href="{% url 'pricing' %}">{% trans "Our Pricing" %}</a></li>
+                                    {% if enough_testimonials or user.is_superuser %}<li><a href="{% url 'testimonials' %}">{% trans "Testimonials" %}</a></p>{% endif %}
+                                    <li><a href="{% url 'privacy_policy' %}">{% trans "Privacy Policy" %}</a></li>
+                                    <li><a href="{% url 'terms_of_service' %}">{% trans "Terms Of Service (ToS)" %}</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-3">
+                            <div class="footer-content-list footer-content-item desk-pad-left-70">
+                                <div class="footer-content-title">
+                                    <h3>{% trans "Services" %}</h3>
+                                </div>
+                                <ul class="footer-details footer-list">
+                                    {% for item in service %}<li><a href="{% url 'serviceDetail' slug=item.slug %}">{{ item.name }}</a></li>{% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-3">
+                            <div class="footer-content-list footer-content-item desk-pad-left-70">
+                                <div class="footer-content-title">
+                                    <h3>{% trans "Contact" %}</h3>
+                                </div>
+                                <div class="footer-details footer-address">
+                                    <div class="footer-address-item">
+                                        <div class="footer-address-text">
+                                            <h4>{% trans "Phone:" %}</h4>
+                                            <p><a href="tel:393917008953">(+39) 391 7008953</a></p>
+                                        </div>
+                                    </div>
+                                    <div class="footer-address-item">
+                                        <div class="footer-address-text">
+                                            <h4>{% trans "Email:" %}</h4>
+                                            <p><a href="mailto:info@skailar.net">info@skailar.net</a></p>
+                                        </div>
+                                    </div>
+                                    <div class="footer-address-item">
+                                        <div class="footer-address-text">
+                                            <h4>{% trans "Address:" %}</h4>
+                                            <p>214, Queens 4th cross, NY</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-lower bg-blue position-relative">
+                <div class="container">
+                    <div class="footer-copyright-text footer-copyright-text-white">
+                        <p><b>&copy;<script>document.write(new Date().getFullYear())</script> <a href="https://skailar.net">Skailar</a>.</b></p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <div class="scroll-top" id="scrolltop">
+            <div class="scroll-top-inner">
+                <i class="icofont-long-arrow-up"></i>
+            </div>
+        </div>
+
+        <div class="side-modal-wrapper">
+            <div class="side-modal">
+                <div class="side-modal-header">
+                    <div class="side-modal-logo">
+                        <a href="{% url 'index' %}"><img src="{% static 'assets/images/logo.png' %}" alt="logo"></a>
+                    </div>
+                    <div class="side-modal-close">
+                        <i class="icofont-close"></i>
+                    </div>
+                </div>
+                <div class="side-modal-body">
+                    <div class="sidebar-info-content">
+                        <h3>{% trans "Contact Us" %}</h3>
+                        <div class="sidebar-info-list">
+                            <div class="sidebar-info-list-item">
+                                <i class="icofont-headphone"></i>
+                                <a href="tel:393917008953">+39 391 7008953</a>
+                            </div>
+                            <div class="sidebar-info-list-item">
+                                <i class="icofont-ui-message"></i>
+                                <a href="mailto:info@skailar.net">info@skailar.net</a>
+                            </div>
+                            <div class="sidebar-info-list-item">
+                                <i class="icofont-paper-plane"></i>
+                                <a href="{% url 'contact' %}">{% trans "Request For Demo" %}</a>
+                            </div>
+                        </div>
+                        {% comment %} <form action="{% url 'set_language' %}" method="POST">{% csrf_token %}
+                            <input type="hidden" name="text" value="{{ redirect_to }}">
+                            <select name="language" id="">{% get_current_language as LANGUAGE_CODE %}{% get_available_languages as LANGUAGES %}{% get_language_info_list for LANGUAGES as languages %}
+                                {% for language in languages %}<option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected {% endif %} class="bg-success">{{ language.name_local|capfirst }} ({{ language.code|upper }})</option>{% endfor %}
+                            </select>
+                            <input type="submit" value="GO" class="btn btn-primary" />
+                        </form> {% endcomment %}
+                    </div>
+                    <div class="sidebar-info-content">
+                        <h3>Follow Us</h3>
+                        <ul class="social-list">
+                            <li>
+                                <a href="https://www.facebook.com/" target="_blank"><i class="icofont-facebook"></i></a>
+                            </li>
+                            <li>
+                                <a href="https://twitter.com/" target="_blank"><i class="icofont-twitter"></i></a>
+                            </li>
+                            <li>
+                                <a href="https://www.instagram.com/" target="_blank"><i class="icofont-instagram"></i></a>
+                            </li>
+                            <li>
+                                <a href="https://www.pinterest.com/" target="_blank"><i class="icofont-pinterest"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+        <script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'assets/js/jquery.magnific-popup.min.js' %}"></script>
+        <script src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
+        <script src="{% static 'assets/js/jquery.nice-select.min.js' %}"></script>
+        <script src="{% static 'assets/js/jquery.ajaxchimp.min.js' %}"></script>
+        <script src="{% static 'assets/js/script.js' %}"></script>        
+        <script src="{% static 'assets/js/form-validator.min.js' %}"></script>
+        <script src="{% static 'assets/js/contact-form-script.js' %}"></script>
+        <script src="{% static 'assets/js/jquery.meanmenu.min.js' %}"></script>
+        <script src="https://kit.fontawesome.com/8c9387c887.js" crossorigin="anonymous"></script>
+        <script type="text/javascript">
+            function setLanguage(language) {
+                document.cookie = 'language=' + language + ';path=/;domain=.localhost:8000';
+                location.reload();
+            }
+        </script>
+        {% block javascript %}{% endblock javascript %}
+    </body>
+</html>

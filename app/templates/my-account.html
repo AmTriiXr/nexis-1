@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+{% block title %}{% trans "Account" %} |{% endblock title %}
+{% block content %}
+{% block class %}bg-white{% endblock class %}
+
+<header class="inner-page-header">
+    <div class="container">
+        <div class="inner-header-content">
+            <h1>{% trans "Account" %}</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="{% url 'index' %}">{% trans "Home" %}</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">{% trans "Account" %}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</header>
+<div class="account-page-section pt-100 pb-70">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-4 col-lg-4 pb-30">
+                <div class="account-sidebar account-sidebar-dark">
+                    <ul class="account-sidebar-list">
+                        <li class="active"><a href="{% url 'my_account' %}">{% trans "Account" %}</a></li>
+                        <li><a href="{% url 'my_orders' %}">{% trans "Orders" %}</a></li>
+                        <li><a href="{% url 'my_addresses' %}">{% trans "Addresses" %}</a></li>
+                        <li><a href="{% url 'my_subscriptions' %}">{% trans "Subscriptions" %}</a></li>
+                        <li><a href="{% url 'logout_user' %}">{% trans "Sign Out" %}</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-8 col-lg-8 pb-30">
+                <div class="account-info">
+                    <form method="POST">{% csrf_token %}
+                        <div class="account-setting-item account-setting-avatar">
+                            <div class="sub-section-title sub-section-title-white mt-0 text-center text-md-start">{% for message in messages %}
+                                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                                        <strong>Message:</strong> {{ message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>{% endfor %}
+                                <h2 class="sub-section-title-heading">{% trans "Avatar" %}</h2>
+                            </div>
+                            <div class="account-avatar-info">
+                                <div class="account-avatar-thumb">
+                                    {% if request.user.avatar %}<img src="{{ request.user.avatar.url }}" alt="avatar">{% else %}
+                                    <img src="{% static 'assets/images/avatar.png' %}" alt="Default avatar">{% endif %}
+                                </div>
+                                <ul class="account-avatar-action">
+                                    <li><button class="btn btn-primary btn-lg disabled">{% trans "Upload" %}</button></li>
+                                    <li><button class="btn btn-secondary btn-lg disabled">{% trans "Remove" %}</button></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="divider"></div>
+                        
+                        <div class="account-setting-item account-setting-avatar">
+                            <div class="sub-section-title sub-section-title-white mt-0 text-center text-md-start">
+                                <h2 class="sub-section-title-heading">{% trans "Account Information" %}</h2>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6 col-lg-6">
+                                    <ul class="">
+                                        <li>User: <strong>{{ user.username }}</strong></li>
+                                        <li>Name: <strong>{{ user.first_name }} {{ user.last_name }}</strong></li>
+                                        <li>Email: <strong>{{ user.email }}</strong></li>
+                                    </ul>
+                                </div>
+                                <div class="col-sm-12 col-md-6 col-lg-6">
+                                    <ul class="">
+                                        <li>Signed Up: <strong>{{ user.date_joined|date:"d/m/Y - H:i" }}</strong></li>
+                                        <li>Last Login: <strong>{{ user.last_login|date:"d/m/Y - H:i" }}</strong></li>
+                                        <li>Permissions: <strong>{% if user.is_staff %}Staff, {% endif %}{% if user.is_superuser %}Superuser {% endif %}{% if not user.is_staff and not user.is_superuser %}Member {% endif %}</strong></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="divider"></div>
+                        <div class="account-setting-item">
+                            <div class="sub-section-title sub-section-title-white mt-0 text-center text-md-start">
+                                <h2 class="sub-section-title-heading">{% trans "Change your data" %}</h2>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6 col-lg-6">
+                                    <div class="form-group mb-20">
+                                        <input type="text" name="fname" id="fname" class="form-control" required placeholder="{% trans "First Name" %}"/>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6 col-lg-6">
+                                    <div class="form-group mb-20">
+                                        <input type="text" name="lname" id="lname" class="form-control" required placeholder="{% trans "Last Name" %}"/>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-12">
+                                    <div class="form-group mb-20">
+                                        <input type="text" name="email" id="email" class="form-control" required placeholder="{% trans "Email" %}"/>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-12">
+                                    <div class="form-group">
+                                        <input type="text" name="phone" id="phone" class="form-control" required placeholder="{% trans "Phone Number" %}" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="divider"></div>
+                                <div class="account-setting-item account-setting-avatar">
+                                    <div class="sub-section-title sub-section-title-white mt-0 text-center text-md-start">
+                                        <h2 class="sub-section-title-heading d-none">{% trans "Change Password" %}</h2>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-12 col-lg-6">
+                                            <div class="form-group mb-20">
+                                                <input type="hidden" name="password" id="password" class="form-control" placeholder="{% trans "Password" %}" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-12 col-lg-6">
+                                            <div class="form-group mb-20">
+                                                <input type="hidden" name="pass1" id="pass1" class="form-control" placeholder="{% trans "New password" %}" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-12 col-lg-6">
+                                            <div class="form-group">
+                                                <input type="hidden" name="pass2" id="pass2" class="form-control" placeholder="{% trans "Confirm password" %}" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="divider d-none"></div>
+                                <div class="account-setting-item account-setting-button">
+                                    <button class="btn main-btn btn-small">{% trans "Save Changes" %}</button>
+                                    <button class="btn main-btn main-btn-black btn-small">{% trans "Cancel" %}</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

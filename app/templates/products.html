@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+{% block title %}{% trans "Products" %} |{% endblock title %}
+{% block content %}
+{% block class %}bg-white{% endblock class %}
+<header class="inner-page-header">
+    <div class="container">
+        <div class="inner-header-content">
+            <h1>{% trans "Products" %}</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="{% url 'index' %}">{% trans "Home" %}</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">{% trans "Products" %}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<section class="product-section pt-100 pb-100">
+    <div class="container">
+        <div class="product-list-header">
+            <div class="product-list-header-item">
+                <div class="product-list-result">
+                    <p>{% trans "Showing" %} <span>{{ product.number }}</span> {% trans "out of" %} <span>{{ product.paginator.num_pages }}</span></p>
+                </div>
+            </div>
+            <div class="product-list-header-item">
+                <div class="product-list-action">
+                    <div class="product-list-search product-list-action-item">
+                        <form method="GET">
+                            <div class="form-group">
+                                <input type="text" placeholder="Search your product" name="q" value="" class="form-control">
+                                <button><i class="flaticon-loupe"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="product-list-form product-list-action-item">
+                        <form method="GET">
+                            <select class="product-sort" name="ordering" id="product-sort">
+                                <option value="default-sorting" {% if not request.GET.ordering %} selected {% endif %}>{% trans "Sort by Default" %}</option>
+                                {% comment %} <option value="popularity" {% if request.GET.ordering == 'popularity' %} selected {% endif %}>Sort by popoularity</option> {% endcomment %}
+                                <option value="price_asc" {% if request.GET.ordering == 'price_asc' %} selected {% endif %}>{% trans "Sort by price: Low to High" %}</option>
+                                <option value="price_desc" {% if request.GET.ordering == 'price_desc' %} selected {% endif %}>{% trans "Sort by price: High to Low" %}</option>
+                            </select>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {% for prod in product %}
+            <div class="col-md-6 col-lg-3 pb-30 product-card-item">
+                <div class="product-card">
+                    <div class="product-card-thumb">
+                        <a href="{% url 'single_product' slug=prod.slug %}">
+                            <img src="{{ prod.image.url }}" alt="product">
+                        </a>
+                    </div>
+                    <div class="product-card-details">
+                        <h3><a href="{% url 'single_product' slug=prod.slug %}">{% trans prod.name %}</a></h3>
+                        <ul class="review-star-list">
+                            <li class="starred"><i class="icofont-star"></i></li>
+                            <li class="starred"><i class="icofont-star"></i></li>
+                            <li class="starred"><i class="icofont-star"></i></li>
+                            <li class="starred"><i class="icofont-star"></i></li>
+                            <li class="starred"><i class="icofont-star"></i></li>
+                        </ul>
+                        <h4 class="product-price">{% trans "$" %}{{ prod.price }}</h4>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <nav aria-label="Page Pagination" class="page-pagination">
+            <ul class="pagination">
+                {% if product.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?pagina=1" tabindex="-1" aria-disabled="true"><i class="flaticon-left-chevron"></i></a>
+                </li>
+
+                <li class="page-item">
+                    <a class="page-link" href="?pagina={{ product.previous_page_number }}">{{ product.previous_page_number }}</a>
+                </li>
+                {% endif %}
+
+                {% if product.has_next %}
+                <li class="page-item active" aria-current="page">
+                    <a class="page-link" href="?pagina={{ product.next_page_number }}">{{ product.next_page_number }}</a>
+                </li>
+                
+                <li class="page-item">
+                    <a class="page-link" href="?pagina={{ product.paginator.num_pages }}"><i class="flaticon-right-chevron"></i></a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+</section>
+
+{% endblock content %}<script src="{% static 'assets/js/order.js' %}"></script>{% block javascript %}{% endblock javascript %}

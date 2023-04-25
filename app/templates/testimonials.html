@@ -1,0 +1,140 @@
+{% extends 'base.html' %} 
+{% load static i18n %} 
+{% block title %}{% trans "Testimonials" %} |{% endblock title %}
+{% block content %} 
+{% block class%}bg-white{% endblock class %}
+
+<header class="inner-page-header">
+  <div class="container">
+    <div class="inner-header-content">
+      <h1>Testimonials</h1>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">
+            Testimonials
+          </li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<section class="testimonial-section p-tb-100 bg-off-white">
+  <div class="container">
+    {% if testimonials %}
+    <div class="testimonial-carousel default-carousel owl-carousel owl-theme">
+      {% for item in testimonials %}
+      <div class="item">
+        <div class="testimonial-card">
+          <div class="testimonial-card-body">
+            <div class="testimonial-card-inner-header">
+              <h3>{{ item.title }}</h3>
+              <div class="testimonial-quote">
+                <i class="icofont-quote-left"></i>
+              </div>
+            </div>
+            <p class="testimonial-para">{{ item.testimonial }}</p>
+            <ul class="review-star-list d-none">
+              <li class="starred"><i class="icofont-star"></i></li>
+              <li class="starred"><i class="icofont-star"></i></li>
+              <li class="starred"><i class="icofont-star"></i></li>
+              <li class="starred"><i class="icofont-star"></i></li>
+              <li class="starred"><i class="icofont-star"></i></li>
+            </ul>
+          </div>
+          <div class="testimonial-card-info">
+            <div class="testimonial-card-info-thumb">
+              <img src="{{ item.pic.url }}" alt="testimonial" />
+            </div>
+            <div class="testimonial-card-info-text">
+              <h3 class="testimonial-name">{{ item.name }}</h3>
+              <p class="testimonial-address">
+                {% if item.created_at|date:"today" == "today" %} 
+                    {{ item.created_at|date:"Today H:i" }} 
+                {% else %} 
+                    {{ item.created_at|date:"d M Y - H:i" }}
+                {% endif %}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p>{% trans "We haven't received any testimonials from our clients yet, but we would love to hear your feedback or testimonial. Contact us to share your experience with our machine learning startup and help us improve our services" %}</p>
+    {% endif %}
+  </div>
+</section>
+
+<section class="choose-section pb-70 pt-100">
+  <div class="container">
+    <div class="section-title">
+      <small>Why Choose Us</small>
+      <h2>Why People Choose Erudex For ML Services</h2>
+      <p>
+        Our purpose is to deliver excellence in service and execution Our
+        purpose is to deliver excellence in service and Our purpose is to
+        deliver excellence.
+      </p>
+    </div>
+    <div class="process-content">
+      <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4 pb-30">
+          <div class="process-item process-item-center border">
+            <div class="process-thumb">
+              <img
+                src="{% static 'assets/images/process/process-four.png' %}"
+                alt="shape"
+              />
+            </div>
+            <div class="process-text">
+              <h3>Easy Model Building</h3>
+              <p>
+                Proin gravida nibh vel velit auctor aliquet Aenean sollicitudin.
+                Proin gravida.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 pb-30">
+          <div class="process-item process-item-center border">
+            <div class="process-thumb">
+              <img
+                src="{% static 'assets/images/process/process-five.png' %}"
+                alt="shape"
+              />
+            </div>
+            <div class="process-text">
+              <h3>Robust ML Production Anywhere</h3>
+              <p>
+                Proin gravida nibh vel velit auctor aliquet Aenean sollicitudin.
+                Proin gravida.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 pb-30">
+          <div class="process-item process-item-center border">
+            <div class="process-thumb">
+              <img
+                src="{% static 'assets/images/process/process-six.png' %}"
+                alt="shape"
+              />
+            </div>
+            <div class="process-text">
+              <h3>Powerful Experimentation</h3>
+              <p>
+                Proin gravida nibh vel velit auctor aliquet Aenean sollicitudin.
+                Proin gravida.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

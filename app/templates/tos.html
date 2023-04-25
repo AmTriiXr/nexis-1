@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+{% block title %}{% trans "Terms of Service" %} |{% endblock title %}
+{% block content %}
+{% block class %}bg-white{% endblock class %}
+
+<header class="inner-page-header">
+    <div class="container">
+        <div class="inner-header-content">
+            <h1>{% trans "Terms Of Service" %}</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="{% url 'index' %}">{% trans "Home" %}</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">{% trans "Terms Of Service" %}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<section class="terms-section p-tb-100">
+    <div class="container">
+        <div class="forum-details">
+            <h3>{% trans "Definitions Of Basic Terms, Rights & Restriction:" %}</h3>
+            <p>{% trans "At Skailar, we take the protection of our users' privacy and intellectual property seriously. To ensure a clear understanding of our policies and guidelines, we have defined some basic terms, rights, and restrictions that apply to our platform." %}</p>
+            <h3>{% trans "Required Terms:" %}</h3>
+            <ul>
+                <li>{% trans "Intellectual Property Rights" %}</li>
+                <li>{% trans "Intellectual Property" %}</li>
+                <li>{% trans "Don't be a Jerk" %}.</li>
+                <li>{% trans "No Divisive Politics" %}</li>
+            </ul>
+            <p>{% trans "As a machine learning startup, we recognize the importance of safeguarding the rights of our users and protecting our intellectual property. To ensure that we operate in a fair and legal manner, we have established the following legal rights and restrictions." %}</p>
+            <h3>{% trans "Legal Rights & Restrictions:" %}</h3>
+            <p>{% trans "As a startup working in the field of machine learning (ML), it's important to be aware of the legal rights and restrictions that govern the use of your product or service. These rights and restrictions can vary depending on the specific jurisdiction, as well as the type of ML technology being used. One key area to consider is data privacy and protection. As an ML startup, you may be dealing with large amounts of sensitive data, such as personal information or confidential business data. It's important to understand the legal requirements for handling this data, including data protection regulations like the General Data Protection Regulation (GDPR) in the European Union. Another area of concern is intellectual property rights. As an ML startup, you may be developing unique algorithms, models, or other forms of intellectual property that you want to protect. It's important to understand the legal mechanisms for protecting this intellectual property, including patents, trademarks, and copyrights. In addition to these specific areas, it's also important to be aware of broader legal rights and restrictions, such as anti-discrimination laws, consumer protection regulations, and data security standards. By staying up-to-date with these legal requirements, your ML startup can ensure that it operates within the law and maintains the trust and confidence of its users and stakeholders." %}</p>
+            <h3>{% trans "Our Policy Concerning Under 18" %}</h3>
+            <p>{% trans "At our ML startup, we take the privacy and protection of minors very seriously. We do not knowingly collect personal information from anyone under the age of 18 without the explicit consent of their parent or legal guardian. If we become aware that we have collected personal information from a minor without the proper consent, we will take all necessary steps to delete the information from our system as soon as possible. We strongly encourage parents and legal guardians to monitor their children's use of our services and to discuss online safety and privacy issues with them. If you are a parent or legal guardian and believe that your child has provided personal information to us without your consent, please contact us immediately so that we can take appropriate action to remedy the situation. By using our services, you agree to comply with all applicable laws and regulations concerning the protection of minors, including but not limited to the Children's Online Privacy Protection Act (COPPA) and the General Data Protection Regulation (GDPR)." %}</p>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}{% load static i18n %}{% block title %}{% trans "News" %} |{% endblock title %}{% block content %}{% block class %}bg-white{% endblock class %}
+
+<header class="inner-page-header">
+    <div class="container">
+        <div class="inner-header-content">
+            <h1>Latest News</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">News</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<section class="blog-section pt-100 pb-100">
+    <div class="container">
+        <div class="row">{% if blog %}{% for article in blog %}
+            <div class="col-md-6 col-lg-4 pb-30">
+                <div class="blog-card">
+                    <div class="blog-card-image">
+                        <a href="{% url 'single_blog' slug=article.slug %}">
+                            <img src="{{ article.image.url }}" alt="blog">
+                        </a>
+                    </div>
+                    <div class="blog-card-text">
+                        {% for category in article.categories.all %}<div class="blog-category">{{ category.name }}</div>&nbsp;{% endfor %}
+                        <h3><a href="{% url 'single_blog' slug=article.slug %}">{% trans article.title %}</a></h3>
+                        <div class="blog-card-entry">
+                            <div class="blog-entry-thumb">
+                                <img src="{{ article.authors.url }}" alt="author">
+                            </div>
+                            <div class="blog-entry-text">
+                                <h4>By: <strong>{{ article.author }}</strong></h4>
+                                <p>{{ article.date|date:"d F Y" }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>{% endfor %}{% else %}
+            <div class="sub-section-title sub-section-title-white mt-0 text-center">
+                <p class="sub-section-title-heading">No Articles found.</p>
+            </div>{% endif %}
+        </div>
+        <nav aria-label="Page Pagination" class="page-pagination">
+            <ul class="pagination">
+                {% if blog.has_previous %}<li class="page-item"><a class="page-link" href="?pagina=1" tabindex="-1" aria-disabled="true"><i class="flaticon-left-chevron"></i></a></li>
+                <li class="page-item"><a class="page-link" href="?pagina={{ blog.previous_page_number }}">{{ blog.previous_page_number }}</a></li>{% endif %}
+                {% if blog.has_next %}<li class="page-item active" aria-current="page"><a class="page-link" href="?pagina={{ blog.next_page_number }}">{{ blog.next_page_number }}</a></li>                
+                <li class="page-item"><a class="page-link" href="?pagina={{ blog.paginator.num_pages }}"><i class="flaticon-right-chevron"></i></a></li>{% endif %}
+            </ul>
+        </nav>
+    </div>
+</section>
+
+{% endblock content %}

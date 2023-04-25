@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+{% block title %}{{ serviceDetail.title }} |{% endblock title %}
+{% block content %}
+{% block class %}bg-white{% endblock class %}
+
+<header class="inner-page-header">
+    <div class="container">
+        <div class="inner-header-content">
+            <h1>{{ serviceDetail.title }}</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                  <li class="breadcrumb-item"><a href="{% url 'services' %}">Services</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">{{ serviceDetail.title }}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<section class="service-section pt-100 pb-70">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 pb-30">
+                <div class="forum-details desk-pad-right-40">
+                    {% if serviceDetail.image %}<img src="{{ serviceDetail.image.url }}" alt="service">{% endif %}
+                    <h2>{{ serviceDetail.title }}</h2>
+                    <p>{{ serviceDetail.content|convert_markdown|safe }}</p>
+                </div>
+            </div>
+            <div class="col-lg-4 pb-30">
+                <div class="sidebar-item sidebar-bg details-sidebar-search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" disabled placeholder="Search">
+                        <button type="submit">
+                            <i class="flaticon-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+{% block title %}{% trans "Orders" %} |{% endblock title %}
+{% block content %}
+{% block class %}bg-white{% endblock class %}
+
+<header class="inner-page-header">
+    <div class="container">
+        <div class="inner-header-content">
+            <h1>{% trans "Orders" %}</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="{% url 'index' %}">{% trans "Home" %}</a></li>
+                  <li class="breadcrumb-item"><a href="{% url 'my_account' %}">{% trans "Account" %}</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">{% trans "Orders" %}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<div class="account-page-section pt-100 pb-70">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-4 col-lg-4 pb-30">
+                <div class="account-sidebar account-sidebar-dark">
+                    <ul class="account-sidebar-list">
+                        <li><a href="{% url 'my_account' %}">{% trans "Account" %}</a></li>
+                        <li class="active"><a href="{% url 'my_orders' %}">{% trans "Orders" %}</a></li>
+                        <li><a href="{% url 'my_addresses' %}">{% trans "Addresses" %}</a></li>
+                        <li><a href="{% url 'my_subscriptions' %}">{% trans "Subscriptions" %}</a></li>
+                        <li><a href="{% url 'logout_user' %}">{% trans "Sign Out" %}</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-8 col-lg-8 pb-30">
+                <div class="account-info">
+                    <div class="my-order align-items-center">
+                        <div class="sub-section-title sub-section-title-white text-center text-lg-start">
+                            <h2 class="sub-section-title-heading">{% trans "Orders" %}</h2>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="cart-table cart-table-white">
+                        <table>
+                            {% if order_items %}
+                            <thead>
+                                <tr>
+                                    <th>{% trans "Product" %}</th>
+                                    <th>{% trans "Id" %}</th>
+                                    <th>{% trans "Price" %}</th>
+                                    <th>{% trans "Quantity" %}</th>
+                                    <th>{% trans "Total" %}</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            {% endif %}
+                            <tbody>
+                                {% for item in order_items %}
+                                <tr>
+                                    <td>
+                                        <div class="product-table-info">
+                                            <div class="product-table-thumb">
+                                                <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                                            </div>
+                                            <span>
+                                                {% with product_name=item.product.name %}
+                                                    {% trans product_name %}
+                                                {% endwith %}
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td class="weight-500">{{ item.product.id }}</td>
+                                    <td>{% trans "$" %}{{ item.product.price }}</td>
+                                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ item.quantity }}</td>
+                                    <td>{% trans "$" %}{{ item.get_total_price }}</td>
+                                </tr>
+                                {% empty %}
+                                <center>
+                                    <p>{% trans "There are currently no orders. Check back soon to see your latest purchases!" %}</p>
+                                    <a class="btn main-btn" href="{% url 'products' %}">{% trans "Shop now" %}</a>
+                                </center>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

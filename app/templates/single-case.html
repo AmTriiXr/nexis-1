@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+{% block title %}{% trans casedetail.titolo %} |{% endblock title %}
+{% block content %}
+{% block class %}bg-white{% endblock class %}
+
+
+<header class="inner-page-header">
+    <div class="container">
+        <div class="inner-header-content">
+            <h1>{% trans casedetail.titolo %}</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="{% url 'index' %}">{% trans "Home" %}</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">{% trans casedetail.titolo %}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<section class="service-section pt-100 pb-70">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 pb-30">
+                <div class="forum-details desk-pad-right-40">
+                    <img src="{{ casedetail.main_img.url }}" alt="service">
+                    <h2>{% trans casedetail.titolo %}</h2>
+                    <p>{% trans casedetail.body_uno %}</p>
+                    <p>{% trans casedetail.body_due %}</p>
+                    <div class="row">
+                        <div class="col-12 col-sm-6">
+                            <img src="{{ casedetail.img_uno.url }}" alt="service">
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <img src="{{ casedetail.img_due.url }}" alt="service">
+                        </div>
+                    </div>
+                    <h3>{% trans casedetail.titolo_due %}</h3>
+                    <p>{% trans casedetail.body_tre %}</p>
+                </div>
+            </div>
+            <div class="col-lg-4 pb-30">
+                <div class="sidebar-item sidebar-bg details-sidebar-search">
+                    <form method="GET">
+                        <div class="form-group">
+                            <input type="text" name="q" class="form-control" placeholder="{% trans "Search" %}">
+                            <button type="submit">
+                                <i class="flaticon-loupe"></i>
+                            </button> 
+                        </div>
+                    </form>
+                </div>
+                <div class="sidebar-item sidebar-bg">
+                    <h3>{% trans "Services" %}</h3>
+                    <ul class="sidebar-list">
+                        {% for item in service %}
+                            <li><a href="" class="active">{% trans item.name %}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="sidebar-item sidebar-bg bg-blue-dark">
+                    <div class="sidebar-author">
+                        <p>{% trans "“Proin gravida nibh vel velit auctor aliquet nean sollicitudin.Proin gravida nibh vel velit auctor aliquet Aenean sollicitudin.Proin vel velit auctor aliquet Aenean sollicitudin.”" %}</p>
+                        <div class="author-info">
+                            <img src="{% static 'assets/images/author-1.jpg' %}" alt="author">
+                            <div class="author-info-details">
+                                <h3>{% trans "Jonson Mandel" %}</h3>
+                                <p>{% trans "Los Angel" %}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar-item">
+                    <h3>{% trans "Recent Post" %}</h3>
+                    <div class="sidebar-recent-post">
+                        {% for item in case %}
+                        <div class="sidebar-recent-post-item">
+                            <a href="{% url 'single_case' slug=item.slug %}">
+                                <img src="{{ item.image.url }}" alt="service">
+                                <div class="recent-post-details">
+                                    <h3>{% trans item.name %}</h3>
+                                    <ul class="post-entry">
+                                        <li>{{ item.date|date:'j F Y - H:i' }}</li>
+                                    </ul>
+                                </div>
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

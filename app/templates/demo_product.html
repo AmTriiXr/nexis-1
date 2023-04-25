@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+{% block title %}{% trans "Demo Product" %} |{% endblock title %}
+{% block content %}
+{% block class %}bg-white{% endblock class %}
+
+
+<header class="inner-page-header">
+    <div class="container">
+        <div class="inner-header-content">
+            <h1>{% trans "Demo Product" %}</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="{% url 'index' %}">{% trans "Home" %}</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">{% trans "Demo Product" %}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<section class="demo-product-section bg-off-white pt-100 pb-70">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 pb-30">
+                <div class="about-section-item about-item-image text-center desk-pad-right-70">
+                    <img src="{% static 'assets/images/demo-1.png' %}" alt="shape">
+                </div>
+            </div>
+            <div class="col-lg-6 pb-30">
+                <div class="about-section-item about-item-details">
+                    <div class="section-title section-title-left text-start mb-0">
+                        <h2>{% trans "Automatic Face Detection" %}</h2>
+                        <p>{% trans "Automatic face detection is a computer technology that enables the identification of human faces within digital images or video. It uses algorithms to analyze the visual features of an image and locate the presence of a human face. This technology is widely used in various applications, such as security systems, social media platforms, and digital photography." %}</p>
+                        <a href="{% url 'about' %}" class="btn main-btn">{% trans "Check It Out" %}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<hr>
+
+<section class="demo-product-section bg-off-white pt-100 pb-70">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 pb-30">
+                <div class="about-section-item about-item-image text-center desk-pad-right-70">
+                    <img src="{% static 'assets/images/demo-2.png' %}" alt="shape">
+                </div>
+            </div>
+            <div class="col-lg-6 pb-30">
+                <div class="about-section-item about-item-details">
+                    <div class="section-title section-title-left text-start mb-0">
+                        <h2>{% trans "Image Processing" %}</h2>
+                        <p>{% trans "Image processing is a field of study that focuses on the analysis, manipulation, and interpretation of digital images using computer algorithms. It involves applying mathematical operations and techniques to enhance or modify digital images to improve their quality or extract useful information. Image processing has numerous applications, including medical imaging, digital photography, remote sensing, computer vision, and more." %}</p>
+                        <a href="{% url 'about' %}" class="btn main-btn">{% trans "Check It Out" %}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="choose-section pb-70 pt-100">
+    <div class="container">
+        <div class="section-title">
+            <small>{% trans "Why Choose Us" %}</small>
+            <h2>{% trans "Why People Choose Skailar For ML Services" %}</h2>
+            <p>{% trans "Our purpose is to deliver excellence in service and execution Our purpose is to deliver excellence in service and Our purpose is to deliver excellence." %}</p>
+        </div>
+        <div class="process-content">
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-4 pb-30">
+                    <div class="process-item process-item-center border">
+                        <div class="process-thumb">
+                            <img src="{% static 'assets/images/process/process-four.png' %}" alt="shape">
+                        </div>
+                        <div class="process-text">
+                            <h3>{% trans "Easy Model Building" %}</h3>
+                            <p>{% trans "Skailar simplifies model building with their expertise and end-to-end solutions for businesses." %}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 pb-30">
+                    <div class="process-item process-item-center border">
+                        <div class="process-thumb">
+                            <img src="{% static 'assets/images/process/process-five.png' %}" alt="shape">
+                        </div>
+                        <div class="process-text">
+                            <h3>{% trans "Robust ML Production Anywhere" %}</h3>
+                            <p>{% trans "Skailar enables robust ML production deployment anywhere with seamless integration." %}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 pb-30">
+                    <div class="process-item process-item-center border">
+                        <div class="process-thumb">
+                            <img src="{% static 'assets/images/process/process-six.png' %}" alt="shape">
+                        </div>
+                        <div class="process-text">
+                            <h3>{% trans "Powerful Experimentation" %}</h3>
+                            <p>{% trans "Skailar enables powerful ML experimentation to find effective solutions for businesses." %}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

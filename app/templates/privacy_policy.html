@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+{% block title %}{% trans "Privacy Policy" %} |{% endblock title %}
+{% block content %}
+{% block class %}bg-white{% endblock class %}
+
+<header class="inner-page-header">
+    <div class="container">
+        <div class="inner-header-content">
+            <h1>{% trans "Privacy Policy" %}</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="{% url 'index' %}">{% trans "Home" %}</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">{% trans "Privacy Policy" %}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<section class="privacy-policy-section p-tb-100">
+    <div class="container">
+        <div class="forum-details">
+            <h3>{% trans "Availability Of Services" %}</h3>
+            <p>{% trans "At our ML startup, we strive to provide reliable and uninterrupted services to our users. However, there may be times when our services are temporarily unavailable due to maintenance, upgrades, or other unforeseen circumstances. We make every effort to minimize any downtime and to provide advance notice to our users whenever possible. In the event of scheduled maintenance or upgrades, we will notify our users via email or through our website at least 24 hours in advance.                 In cases where our services are unavailable due to unexpected issues, we will work diligently to resolve the problem as quickly as possible and will provide updates on the status of the issue.                 We understand that downtime can be frustrating for our users and we appreciate your patience and understanding as we work to ensure the reliability and availability of our services." %}</p>
+            <h3>{% trans "Key Note Of Policy" %}</h3>
+            <ul>
+                <li>{% trans "Privacy" %}</li>
+                <li>{% trans "Responsible Use" %}</li>
+                <li>{% trans "Termination." %}</li>
+                <li>{% trans "High-Quality results" %}</li>
+            </ul>
+            <p>{% trans "At our ML startup, we take our policies seriously and want to ensure that our users have a clear understanding of what they can expect from us. As such, we have several key notes of our policy that we want to highligh First and foremost, we take the privacy of our users very seriously. We are committed to protecting your personal information and ensuring that it is kept safe and secure. We will never share your information with third parties without your express consent, and we use the latest security measures to safeguard your data. In addition, we have a strict policy when it comes to termination of services. We reserve the right to terminate access to our services at any time if we believe that a user is violating our policies or engaging in behavior that is harmful to our platform or community. We also expect all users to use our services responsibly and in accordance with our guidelines. This includes refraining from any activity that may be harmful or offensive to others, as well as avoiding any behavior that could compromise the integrity of our platform. Finally, we are committed to providing high-quality results and ensuring that our users get the most out of our services. We use the latest AI and ML technologies to deliver accurate and reliable results, and we are constantly improving our algorithms to ensure that our users receive the best possible experience." %}</p>
+            <h3>{% trans "Company Regulations" %}</h3>
+            <p>{% trans "Company regulations refer to the set of guidelines, policies, and procedures that a company establishes to govern its operations, maintain compliance with laws and regulations, and ensure that all employees understand the company's expectations and values. In a machine learning startup, company regulations are essential to ensure the integrity and accuracy of the data used in the development of AI algorithms. These regulations may include guidelines for data collection, storage, and sharing, as well as procedures for testing and validating models before deployment. In addition to technical regulations, a company may also have regulations related to employee conduct, such as policies on discrimination, harassment, and ethical behavior. These regulations are critical for creating a safe and respectful workplace and ensuring that employees are held accountable for their actions. Overall, company regulations are an essential component of any successful machine learning startup. By establishing clear guidelines and procedures, a company can maintain compliance with legal and ethical standards, ensure the quality and accuracy of its models, and promote a positive work environment." %}</p>
+            <h3>{% trans "Our Policy Concerning Under 18" %}</h3>
+            <p>{% trans "Our policy concerning individuals under the age of 18 is to not knowingly collect or solicit any personal information from them. Our services are not intended for children under 18 years of age. If we become aware that we have collected personal information from a child under the age of 18, we will promptly take steps to delete that information. If you believe that we have collected personal information from a child under the age of 18, please contact us immediately so that we can take appropriate action." %} <a href="{% url 'terms_of_service' %}">{% trans "Read More" %}</a></p>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

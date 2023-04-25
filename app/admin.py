@@ -1,0 +1,22 @@
+from django.contrib import admin
+from .models import ServiceDetail, Testimonial, Category, Article, ArticleDetail, Feature, FeatureDetail, Review , Service, Process, WhyUs, UserProfile, OrderItem, Order, Product, Address, ProductDetail, Case, CaseDetail
+
+admin.site.register(Feature)
+admin.site.register(FeatureDetail)
+admin.site.register(Service)
+admin.site.register(ServiceDetail)
+admin.site.register(Process)
+admin.site.register(WhyUs)
+admin.site.register(UserProfile)
+admin.site.register(OrderItem)
+admin.site.register(Order)
+admin.site.register(Product)
+admin.site.register(ProductDetail)
+admin.site.register(Case)
+admin.site.register(CaseDetail)
+admin.site.register(Address)
+admin.site.register(Review)
+admin.site.register(Category)
+admin.site.register(Article)
+admin.site.register(ArticleDetail)
+admin.site.register(Testimonial)

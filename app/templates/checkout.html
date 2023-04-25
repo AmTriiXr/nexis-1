@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+{% block title %}{% trans "Checkout" %} |{% endblock title %}
+{% block content %}
+{% block class %}bg-white{% endblock class %}
+
+
+<header class="inner-page-header">
+    <div class="container">
+        <div class="inner-header-content">
+            <h1>{% trans "Checkout" %}</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="{% url 'index' %}">{% trans "Home" %}</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">{% trans "Checkout" %}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<div class="checkout-section pt-100 pb-70">
+    <div class="container">
+        <div class="row">
+            {% if address %}
+                <div class="col-sm-12 pb-30">
+                    <div class="checkout-item">
+                        <div class="sub-section-title">
+                            <h3 class="sub-section-title-heading">{% trans "Your Orders" %} 
+                                <small style="font-weight: normal; font-size: 12px;">{% trans "*Including shipping cost*" %}</small>
+                            </h3>
+                        </div>
+                        <div class="checkout-details mb-30">
+                            <div class="cart-total-box">
+                                <div class="cart-total-item">
+                                    <h4 class="checkout-total-title">{% trans "Product Name" %}</h4>
+                                    <p class="checkout-total-title">{% trans "Total" %}</p>
+                                </div>
+                                {% for item in order_items %}
+                                <div class="cart-total-item">
+                                    <h4>{{ item.product.name|slice:":17"}}... {% if item.quantity > 1 %}<strong style="font-size: 12px;">x{{ item.quantity }} </strong>{% endif %}</h4>
+                                    <p>${{ item.get_total_price }}</p>
+                                </div>
+                                {% endfor %}
+                                <div class="cart-total-item">
+                                    <h4 class="checkout-total-title">{% trans "Total" %}</h4>
+                                    <p class="checkout-total-title">${{ order.get_total_order_price }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="checkout-payment-area">
+                            <div class="sub-section-title">
+                                <h3 class="sub-section-title-heading">{% trans "What's Payment Method" %}</h3>
+                            </div>
+                            <div class="checkout-payment-form">
+                                <form>
+                                    <div class="input-checkbox mb-20">
+                                        <input type="radio" id="check3" name="payment_method" value="bank_transfer">
+                                        <label for="check3">{% trans "Bank Transfer" %}</label>
+                                    </div>
+                                    
+                                    <div class="input-checkbox mb-20">
+                                        <input type="radio" id="check5" name="payment_method" value="visa">
+                                        <label for="check5">{% trans "Credit Card" %}</label>
+                                    </div>
+                                    
+                                    <div id="visa-details" style="display:none">
+                                        <h3 class="cart-details-title mb-20">{% trans "Card Details" %}</h3>
+                                        <div class="row">
+                                            <div class="col-12 col-lg-6">
+                                                <div class="form-group mb-20">
+                                                    <input type="text" name="name" class="form-control" required="" placeholder="Name On The Card*">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-lg-6">
+                                                <div class="form-group mb-20">
+                                                    <input type="text" name="number" class="form-control" required="" placeholder="Card Number*">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-lg-6">
+                                                <div class="form-group mb-20">
+                                                    <input type="text" name="date" class="form-control" required="" placeholder="Expire Date*">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-lg-6">
+                                                <div class="form-group mb-20">
+                                                    <input type="text" name="cvn" class="form-control" required="" placeholder="CVN*">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <button onclick="location.href='{% url 'payment_confirmation' %}'" class="btn main-btn full-width" type="submit">
+                                                    {% trans "Make Payment" %}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="bank-transfer-details" style="display:none">
+                                        <h3 class="cart-details-title mb-20">
+                                            {% trans "Bank Transfer Details" %}
+                                            <small style="font-weight: normal; font-size: 12px;">{% trans "*note that it may take up to two business days for the payment to be processed and reflected in our system.*" %}</small>
+                                        </h3>
+                                        <div class="row">
+                                            <div class="col-12 col-lg-6">
+                                                <div class="form-group mb-20">
+                                                    <input type="text" name="account-name" class="form-control" required="" placeholder="Account Name*">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-lg-6">
+                                                <div class="form-group mb-20">
+                                                    <input type="text" name="account-number" class="form-control" required="" placeholder="Account Number*">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <button onclick="location.href='{% url 'payment_confirmation' %}'" class="btn main-btn full-width" type="submit">
+                                                    {% trans "Make Payment" %}
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+            <center>
+                <p class="billing-address-info">{% trans "You have not set up address yet." %}</p>
+                <hr>
+                <a href="{% url 'my_addresses' %}" class="btn main-btn">{% trans "Add Now" %}</a>
+            </center>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+{% block javascript %}<script src="{% static 'assets/js/payment.js' %}"></script>{% endblock javascript %}

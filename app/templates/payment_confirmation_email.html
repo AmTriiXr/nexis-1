@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Payment Confirmation</title>
+  <meta charset="utf-8">
+  <style>
+    * {
+        box-sizing: border-box;
+      }
+      
+      body {
+        font-family: 'Roboto', sans-serif;
+        font-size: 16px;
+        color: #333;
+        background-color: #f7f7f7;
+      }
+      
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 30px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+      }
+      
+      h1 {
+        margin-top: 0;
+        margin-bottom: 20px;
+        font-size: 28px;
+        font-weight: bold;
+        text-align: center;
+        color: #007bff;
+      }
+      
+      p {
+        margin-bottom: 10px;
+        line-height: 1.5;
+      }
+      
+      strong {
+        font-weight: bold;
+        color: #555;
+      }
+      
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      
+      li {
+        margin-bottom: 10px;
+      }
+      
+      .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+      }
+      
+      .table td, .table th {
+        padding: 10px;
+        border: 1px solid #ddd;
+        text-align: left;
+      }
+      
+      .table th {
+        background-color: #f7f7f7;
+        font-weight: bold;
+        color: #555;
+        text-transform: uppercase;
+        font-size: 14px;
+        padding: 12px;
+      }
+      
+      .table td {
+        padding: 12px;
+        font-size: 14px;
+      }
+      
+      .button {
+        display: inline-block;
+        padding: 10px 20px;
+        border-radius: 3px;
+        text-align: center;
+        font-weight: bold;
+        text-decoration: none;
+        color: #fff;
+        background-color: #007bff;
+        transition: background-color 0.2s ease;
+      }
+      
+      .button:hover {
+        background-color: #0062cc;
+      }
+      
+      .footer {
+        margin-top: 30px;
+        border-top: 1px solid #ddd;
+        padding-top: 20px;
+        font-size: 14px;
+        text-align: center;
+      }
+      
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Payment Confirmation</h1>
+    <p>Dear <strong>{{ address.0.first_name }} {{ address.0.last_name }}</strong>,</p>
+    <p>We have received your payment for the following product:</p>
+    <table class="table">
+      {% for item in order_items %}
+      <tr>
+        <th>Product Name</th>
+        <td>{% if item.quantity > 1 %}x{{item.quantity}}{% endif %} {{ item.product }}</td>
+      </tr>
+      {% endfor %}
+      <tr>
+        <th>Order Total</th>
+        <td>${{ order.0.get_total_order_price }}</td>
+      </tr>
+      <tr>
+        <th>Payment Method</th>
+        <td>{{ order.0.payment_method }}</td>
+      </tr>
+      <tr>
+        <th>Payment Date</th>
+        <td>{{ order.0.payment_date|date:"d F Y - H:i" }}</td>
+      </tr>
+    </table>
+    <p>Thank you for your purchase!</p>
+    <p>
+      If you have any questions about your order, please contact us at
+      <a href="mailto:support@skailar.net">support@skailar.net</a>
+    </p>
+    <p>
+      <a href="http://127.0.0.1:8000/my-orders" class="button">View Order Details</a>
+    </p>
+  </div>
+</body>
+</html>

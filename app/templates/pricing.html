@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+{% block title %}{% trans "Pricing" %} |{% endblock title %}
+{% block content %}
+{% block class %}bg-white{% endblock class %}
+
+
+<header class="inner-page-header">
+    <div class="container">
+        <div class="inner-header-content">
+            <h1>{% trans "Pricing" %}</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="{% url 'index' %}">{% trans "Home" %}</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">{% trans "Pricing" %}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<section class="pricing-section pt-100 pb-70">
+    <div class="container">
+        <div class="section-title">
+            <h2>{% trans "Choose Any Pricing Plan With Best Services" %} </h2>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-lg-4 pb-30">
+                <div class="pricing-card">
+                    <div class="pricing-category">
+                        <h3>{% trans "Basic" %}</h3>
+                        <div class="pricing-thumb">
+                            <i class="flaticon-rocket"></i>
+                        </div>
+                    </div>
+                    <div class="pricing-info">
+                        {% blocktrans %}
+                        <h3>Free <span>/ 10 Days</span></h3>
+                        {% endblocktrans %}
+                        <ul>
+                            <li class="pricing-available">{% trans "Basic analytics" %}</li>
+                            <li class="pricing-available">{% trans "Trial model building" %}</li>
+                            <li class="pricing-available">{% trans "Limited API access" %}</li>
+                            <li>{% trans "Unlimited Broadcast" %}</li>
+                            <li>{% trans "24/7 Customer Support" %}</li>
+                            <li>{% trans "Unlimited Staff" %}</li>
+                        </ul>
+                        <a href="{% url 'login' %}" class="btn main-btn">{% trans "Get Started" %}</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 pb-30">
+                <div class="pricing-card">
+                    <div class="pricing-category">
+                        <h3>{% trans "Professional" %}</h3>
+                        <div class="pricing-thumb">
+                            <i class="flaticon-rocket"></i>
+                        </div>
+                    </div>
+                    <div class="pricing-info">
+                        {% blocktrans %}
+                        <h3>$120 <span>/ Month</span></h3>
+                        {% endblocktrans %}
+                        <ul>
+                            <li class="pricing-available">{% trans "Advanced analytics" %}</li>
+                            <li class="pricing-available">{% trans "Full model building" %}</li>
+                            <li class="pricing-available">{% trans "Extended API access" %}</li>
+                            <li class="pricing-available">{% trans "Unlimited Broadcast" %}</li>
+                            <li class="pricing-available">{% trans "24/7 Customer Support" %}</li>
+                            <li class="pricing-available">{% trans "Unlimited Staff" %}</li>
+                        </ul>
+                        <a href="{% url 'login' %}" class="btn main-btn">{% trans "Get Started" %}</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 offset-md-3 offset-lg-0 pb-30">
+                <div class="pricing-card">
+                    <div class="pricing-category">
+                        <h3>{% trans "Business" %}</h3>
+                        <div class="pricing-thumb">
+                            <i class="flaticon-rocket"></i>
+                        </div>
+                    </div>
+                    <div class="pricing-info">
+                        {% blocktrans %}
+                        <h3>$500 <span>/ Month</span></h3>
+                        {% endblocktrans %}
+                        <ul>
+                            <li class="pricing-available">{% trans "Custom analytics" %}</li>
+                            <li class="pricing-available">{% trans "Custom model building" %}</li>
+                            <li class="pricing-available">{% trans "Full API access" %}</li>
+                            <li class="pricing-available">{% trans "Unlimited Broadcast" %}</li>
+                            <li class="pricing-available">{% trans "24/7 Customer Support" %}</li>
+                            <li class="pricing-available">{% trans "Unlimited Staff" %}</li>
+                        </ul>
+                        <a href="{% url 'login' %}" class="btn main-btn">{% trans "Get Started" %}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

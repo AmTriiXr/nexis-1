@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+{% block title %}{% trans "Addresses" %} |{% endblock title %}
+{% block content %}
+{% block class %}bg-white{% endblock class %}
+
+<header class="inner-page-header">
+    <div class="container">
+        <div class="inner-header-content">
+            <h1>{% trans "Addresses" %}</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="{% url 'index' %}">{% trans "Home" %}</a></li>
+                  <li class="breadcrumb-item"><a href="{% url 'my_account' %}">{% trans "Account" %}</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">{% trans "Addresses" %}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<div class="account-page-section pt-100 pb-70">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-4 col-lg-4 pb-30">
+                <div class="account-sidebar account-sidebar-dark">
+                    <ul class="account-sidebar-list">
+                        <li><a href="{% url 'my_account' %}">{% trans "Account" %}</a></li>
+                        <li><a href="{% url 'my_orders' %}">{% trans "Orders" %}</a></li>
+                        <li class="active"><a href="{% url 'my_addresses' %}">{% trans "Addresses" %}</a></li>
+                        <li><a href="{% url 'my_subscriptions' %}">{% trans "Subscriptions" %}</a></li>
+                        <li><a href="{% url 'logout_user' %}">{% trans "Sign Out" %}</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-8 col-lg-8 pb-30">
+                <div class="account-info">
+                    <div class="account-setting-item account-setting-avatar">
+                        <div class="sub-section-title sub-section-title-white mt-0">
+                            <h2 class="sub-section-title-heading">{% trans "Addresses" %}</h2>
+                            <p>{% trans "The following addresses will be used on the checkout by default." %}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="billing-title">
+                                <h4>{% trans "Biliing Address" %}</h4>
+                                {% if addresses %}
+                                <p>{% trans "Edit" %}</p>
+                                {% else %}
+                                <p>{% trans "Add" %}</p>
+                                {% endif %}
+                            </div>
+                            {% if addresses %}
+                            {% for address in addresses %}
+                            <br>
+                            <div class="billing-address" style="display: flex; justify-content: space-between; align-items: center;">
+                                <address>
+                                    {{ address.street_address|capfirst }} <br>
+                                    {{ address.city|capfirst }}, {{ address.zip_code }} ({{ address.state|slice:":2"|upper }})
+                                </address>
+                                <p style="padding-top: 20px"><a href="{% url 'delete_address' address.pk %}">Delete</a></p>
+                            </div>
+
+                            {% endfor %}
+                            {% else %}
+                            <p class="billing-address-info">{% trans "You have not set up this type of address yet." %}</p>
+                            {% endif %}
+                            <div class="billing-address-input">
+                                <form method="POST">
+                                    <div class="row">
+                                        {% csrf_token %}
+                                        {{ form.as_p }}
+                                        <div class="col-12">
+                                            <button type="submit" class="btn main-btn full-width">{% trans "Place Address" %}</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

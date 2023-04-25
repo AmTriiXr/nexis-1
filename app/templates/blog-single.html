@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+{% block title %}{{ detail.title }} |{% endblock title %}
+{% block content %}
+{% block class %}bg-white{% endblock class %}
+
+
+<header class="inner-page-header">
+    <div class="container">
+        <div class="inner-header-content">
+            <h1>{{ detail.title }}</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                  <li class="breadcrumb-item"><a href="{% url 'blog' %}">News</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">{{ detail.title }}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<div class="blog-section pt-100 pb-70">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 pb-30">
+                <div class="blog-details desk-pad-right-40">
+                    <article>
+                        <div class="forum-details mb-30">
+                            <div class="blog-details-category">
+                                <img src="{{ detail.image.url }}" width="940" height="580" alt="blog">
+                                {% for category in detail.categories.all %}
+                                    <div class="blog-category">{{ category.name }}</div>
+                                {% endfor %}
+                            </div>
+                            <h2>{{ detail.title }}</h2>
+                            <p>{{ detail.content|convert_markdown|safe }}</p>
+                            
+                            
+                            
+                            <div style="margin-bottom: 25px;"></div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+            <div class="col-lg-4 pb-30">
+                <div class="sidebar-item">
+                    <h3>Recent Post</h3>
+                    <div class="sidebar-recent-post">
+                        {% for item in queryset %}
+                        <div class="sidebar-recent-post-item">
+                            <a href="{% url 'single_blog' slug=item.slug %}">
+                                <img src="{{ item.image.url }}" alt="service">
+                                <div class="recent-post-details">
+                                    <h3>{{ item.title }}</h3>
+                                    <ul class="post-entry">
+                                        <li>{{ item.date|date:"d F Y" }}</li>
+                                    </ul>
+                                </div>
+                            </a>
+                        </div>
+                        {% empty %}
+                        <center>
+                            <p>No recent posts</p>
+                        </center>
+                    {% endfor %}
+                        
+                    </div>
+                </div>
+                <div class="sidebar-item sidebar-bg">
+                    <h3>Categories</h3>
+                    <ul class="sidebar-category">
+                        {% for item in categories %}
+                        <li>                        
+                            <a href="">
+                                {{ item.name }}
+                                <span></span>
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

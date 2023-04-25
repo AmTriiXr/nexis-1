@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+{% block title %}{% trans "About Us" %} |{% endblock title %}
+{% block content %}
+{% block class %}bg-white{% endblock class %}
+
+<header class="inner-page-header">
+    <div class="container">
+        <div class="inner-header-content">
+            <h1>{% trans "About Us" %}</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="{% url 'index' %}">{% trans "Home" %}</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">{% trans "About Us" %}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<section class="about-section bg-off-white pt-100 pb-70">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 pb-30">
+                <div class="about-section-item about-item-image text-center">
+                    <img src="{% static 'assets/images/feature-shape/feature-shape-1.png' %}" alt="shape">
+                </div>
+            </div>
+            <div class="col-lg-6 pb-30">
+                <div class="about-section-item about-item-details">
+                    <div class="section-title section-title-left text-start">
+                        <small>{% trans "About Us" %}</small>
+                        <h2>{% trans "Mission Is To Bring The Power Of Ml To Every Business" %}</h2>
+                    </div>
+                    <div class="about-content">
+                        <p>{% trans "Our mission is to democratize machine learning by making it accessible to every business, regardless of their size or industry. We believe that ML has the power to transform the way businesses operate, and we are committed to delivering innovative solutions that leverage its full potential. Join us in our journey to bring the power of ML to every business and unlock new opportunities for growth and success." %}</p>
+                        <ul>
+                            <li>{% trans "Advance Advisory Team" %}</li>
+                            <li>{% trans "Advance Quality Experts" %}</li>
+                            <li>{% trans "Many variations of passages" %}</li>
+                            <li>{% trans "High-Quality Results" %}</li>
+                        </ul>
+                        <p>{% trans "At our core, we are driven by a passion for innovation and a desire to empower businesses with the tools they need to succeed in a rapidly changing world. We understand that the path to achieving this goal is not an easy one, but we are dedicated to working tirelessly to break down barriers and make ML a viable option for businesses of all types. Whether you are just starting out or are an established player in your industry." %}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="choose-section pb-70 pt-100">
+    <div class="container">
+        <div class="section-title">
+            <small>{% trans "Why Choose Us" %}</small>
+            <h2>{% trans "Why People Choose Skailar For ML Services" %}</h2>
+            <p>{% trans "Skailar is a trusted partner for ML services, offering customized solutions to meet specific business needs with their team of skilled engineers and data scientists." %}</p>
+        </div>
+        <div class="process-content">
+            <div class="row justify-content-center">
+                {% for why in whyus %}
+                <div class="col-md-6 col-lg-4 pb-30">
+                    <div class="process-item process-item-center border">
+                        <div class="process-thumb">
+                            <img src="{{ why.image.url }}" alt="shape">
+                        </div>
+                        <div class="process-text">
+                            <h3>{{ why.name }}</h3>
+                            <p>{% trans why.desc %}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+{% load static i18n %}
+<html>
+  <body>
+  <h2>{% trans "Process Payment" %}</h2>
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">{% trans "Submit" %}</button>
+  </form>
+</body>
+</html>

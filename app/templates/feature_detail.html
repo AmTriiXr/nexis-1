@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+{% block title %}{% trans feature_detail.titolo %} |{% endblock title %}
+{% block content %}
+{% block class %}bg-white{% endblock class %}
+
+
+<header class="inner-page-header">
+    <div class="container">
+        <div class="inner-header-content">
+            <h1>{% trans feature_detail.titolo %}</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="{% url 'index' %}">{% trans "Home" %}</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">{% trans feature_detail.titolo %}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<section class="service-section pt-100 pb-70">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 pb-30">
+                <div class="forum-details desk-pad-right-40">
+                    <img src="{{ feature_detail.main_img.url }}" alt="service">
+                    <h2>
+                        {% with title=feature_detail.titolo|convert_markdown|safe %}
+                            {% trans title %}
+                        {% endwith %}
+                    </h2>
+
+                    <p>
+                        {% with body=feature_detail.body_uno|convert_markdown|safe %}
+                            {% trans body %}
+                        {% endwith %}
+                    </p>
+                    <p>
+                        {% with body_due=feature_detail.body_due|convert_markdown|safe %}
+                            {% trans body_due %}
+                        {% endwith %}    
+                    </p>
+                    <div class="row">
+                        <div class="col-12 col-sm-6">
+                            <img src="{{ feature_detail.img_uno.url }}" alt="service">
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <img src="{{ feature_detail.img_due.url }}" alt="service">
+                        </div>
+                    </div>
+                    <h3>
+                        {% with title_due=feature_detail.titolo_due|convert_markdown|safe %}
+                            {% trans title_due %}
+                        {% endwith %}
+                    </h3>
+                    <p>
+                        {% with body_tre=feature_detail.body_tre|convert_markdown|safe %}
+                            {% trans body_tre %}
+                        {% endwith %}
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4 pb-30">
+                <div class="sidebar-item sidebar-bg details-sidebar-search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                        <button type="submit">
+                            <i class="flaticon-search"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="sidebar-item sidebar-bg">
+                    <h3>{% trans "Services" %}</h3>
+                    <ul class="sidebar-list">
+                        <li><a href="" class="active">{% trans "Robotic Automation" %}</a></li>
+                        <li><a href="">{% trans "Predictive Analytics" %}</a></li>
+                        <li><a href="">{% trans "Deep Learning" %}</a></li>
+                        <li><a href="">{% trans "Data Mining" %}</a></li>
+                        <li><a href="">{% trans "Statistical Modeling" %}</a></li>
+                        <li><a href="">{% trans "Security & Surveillance" %}</a></li>
+                    </ul>
+                </div>
+                <div class="sidebar-item sidebar-bg bg-blue-dark">
+                    <div class="sidebar-author">
+                        <p>{% trans "Proin gravida nibh vel velit auctor aliquet nean sollicitudin.Proin gravida nibh vel velit auctor aliquet Aenean sollicitudin.Proin vel velit auctor aliquet Aenean sollicitudin." %}</p>
+                        <div class="author-info">
+                            <img src="{% static 'assets/images/author-1.jpg' %}" alt="author">
+                            <div class="author-info-details">
+                                <h3>{% trans "Jonson Mandel" %}</h3>
+                                <p>{% trans "Los Angel" %}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar-item">
+                    <h3>{% trans "Recent Post" %}</h3>
+                    <div class="sidebar-recent-post">
+                        <div class="sidebar-recent-post-item">
+                            <a href="service-deep-learning.html">
+                                <img src="{% static 'assets/images/services/service-4.png' %}" alt="service">
+                                <div class="recent-post-details">
+                                    <h3>{% trans "Is Machine Learning Right Going On Good Way" %}</h3>
+                                    <ul class="post-entry">
+                                        <li>{% trans "January 25, 2021" %}</li>
+                                    </ul>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="sidebar-recent-post-item">
+                            <a href="service-deep-learning.html">
+                                <img src="{% static 'assets/images/services/service-5.png' %}" alt="service">
+                                <div class="recent-post-details">
+                                    <h3>{% trans "The Current State Of Artificial Intelligence Infographic" %}</h3>
+                                    <ul class="post-entry">
+                                        <li>{% trans "January 24, 2021" %}</li>
+                                    </ul>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="sidebar-recent-post-item">
+                            <a href="service-deep-learning.html">
+                                <img src="{% static 'assets/images/services/service-6.png' %}" alt="service">
+                                <div class="recent-post-details">
+                                    <h3>{% trans "Our Company As A Global Leader In Big Data" %}</h3>
+                                    <ul class="post-entry">
+                                        <li>{% trans "January 23, 2021" %}</li>
+                                    </ul>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

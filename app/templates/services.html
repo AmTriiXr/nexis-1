@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+{% block title %}{% trans "Services" %} |{% endblock title %}
+{% block content %}
+{% block class %}bg-white{% endblock class %}
+
+
+<header class="inner-page-header">
+    <div class="container">
+        <div class="inner-header-content">
+            <h1>{% trans "Services" %}</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="{% url 'index' %}">{% trans "Home" %}</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">{% trans "Services" %}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<section class="service-section pt-100 pb-70">
+    <div class="container">
+        <div class="section-title section-title-lg">
+            {% blocktrans %}
+            <h2>Our Purpose Is To Deliver Excellence <br> In Service And Execution</h2>
+            <p>Our purpose is to consistently provide exceptional service and flawless execution to our clients, setting the standard for excellence in our industry. We strive to exceed expectations and earn the trust and loyalty of those we serve.</p>
+            {% endblocktrans %}
+        </div>
+        <div class="row">
+            {% for serv in service %}
+            <div class="col-md-6 col-lg-4 pb-30">
+                <div class="service-card">
+                    <div class="service-card-thumb">
+                        <i class="{{ serv.flaticon }}"></i>
+                    </div>
+                    <div class="service-card-body">
+                        <h3>{% trans serv.name %}</h3>
+                        <p>{% trans serv.desc %}</p>
+                        <a href="{% url 'serviceDetail' slug=serv.slug %}" class="redirect-link">{% trans "Discover More" %} <i class="icofont-rounded-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock content%}

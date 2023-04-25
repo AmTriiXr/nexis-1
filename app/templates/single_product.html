@@ -1,0 +1,206 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+{% block title %}{% trans product_detail.name %} |{% endblock title %}
+{% block content %}
+{% block class %}bg-white{% endblock class %}
+
+<header class="inner-page-header">
+    <div class="container">
+        <div class="inner-header-content">
+            <h1>{% trans product_detail.name %}</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="{% url 'index' %}">{% trans "Home" %}</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">{% trans product_detail.name %}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<section class="product-details-section pt-100 pb-100">
+    <div class="container">
+        <div class="product-details-content">
+            <div class="row align-items-center">
+                <div class="col-12 col-lg-5 pb-30">
+                    <div class="product-details-item desk-pad-right-40">
+                        <div class="product-details-slider">
+                            <div class="product-slider-for owl-carousel owl-theme gallery-grid">
+                                <div class="item">
+                                    <div class="product-gallery-trigger">
+                                        <a href="{{ product_detail.image_uno.url }}" title="{% trans product_detail.name %}"><i class="icofont-expand"></i></a>
+                                    </div>
+                                    <img src="{{ product_detail.image_uno.url }}" alt="product">
+                                </div>
+                                <div class="item">
+                                    <div class="product-gallery-trigger">
+                                        <a href="{{ product_detail.image_due.url }}" title="{% trans product_detail.name %}"><i class="icofont-expand"></i></a>
+                                    </div>
+                                    <img src="{{ product_detail.image_due.url }}" alt="product">
+                                </div>
+                                <div class="item">
+                                    <div class="product-gallery-trigger">
+                                        <a href="{{ product_detail.image_tre.url }}" title="{% trans product_detail.name %}"><i class="icofont-expand"></i></a>
+                                    </div>
+                                    <img src="{{ product_detail.image_tre.url }}" alt="product">
+                                </div>
+                            </div>
+                            <div class="product-slider-nav owl-carousel owl-theme">
+                                <div class="item">
+                                    <img src="{{ product_detail.image_uno.url }}" alt="product">
+                                </div>
+                                <div class="item">
+                                    <img src="{{ product_detail.image_due.url }}" alt="product">
+                                </div>
+                                <div class="item">
+                                    <img src="{{ product_detail.image_tre.url }}" alt="product">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-7 pb-30">
+                    <div class="product-details-item">
+                        <div class="product-details-caption">
+                            <h3>{% trans product_detail.name %}</h3>
+                            <h5>ID: {{ product_detail.modello }}</h5>
+                            <div class="review-star-group">
+                                <ul class="review-star-list">
+                                    <li class="starred"><i class="icofont-star"></i></li>
+                                    <li class="starred"><i class="icofont-star"></i></li>
+                                    <li class="starred"><i class="icofont-star"></i></li>
+                                    <li class="starred"><i class="icofont-star"></i></li>
+                                    <li class="starred"><i class="icofont-star"></i></li>
+                                </ul>
+                                <span>{{ review.rating }}</span>
+                            </div>
+                            <h4 class="product-price">{% trans "$" %}{{ product_detail.price }}</h4>
+                            <div class="product-details-para">
+                                <p>{% trans product_detail.intro %}</p>
+                            </div>
+                            <div class="product-quantity product-action-info">
+                                <div class="d-flex flex-wrap align-items-center">
+                                    <a href="{% url 'add_to_cart' product_slug=product_detail.slug %}" class="btn main-btn">{% trans "Add To Cart" %}</a>
+                                </div>
+                            </div>
+                            <div class="share-post product-action-info">
+                                <h4>{% trans "Share" %}</h4>
+                                <ul class="social-list">
+                                    <li>
+                                        <a href="https://www.facebook.com/" target="_blank"><i class="icofont-facebook"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="https://twitter.com/" target="_blank"><i class="icofont-twitter"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.instagram.com/" target="_blank"><i class="icofont-instagram"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.pinterest.com/" target="_blank"><i class="icofont-pinterest"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-details-tab">
+                <ul class="product-tab-list">
+                    <li class="active" data-product-tab="1">{% trans "Description" %}</li>
+                    <li data-product-tab="2">{% trans "Reviews" %}</li>
+                </ul>
+                <div class="product-tab-information">
+                    <div class="product-tab-information-item active" data-product-details-tab="1">
+                        <div class="product-description">
+                            <p>{% trans product_detail.desc %}</p>
+                       </div>
+                    </div>
+                    <div class="product-tab-information-item" id="review" data-product-details-tab="2">
+                        <div class="product-review-box">
+                            <div class="post-review-box">
+                                {% for review in product_detail.reviews.all %}
+                                <div class="review-holder-item">
+                                    <div class="post-review-item post-review-item-main">
+                                        <div class="post-review-thumb">
+                                            <img src="{{ review.author_image.url }}" alt="user">
+                                        </div>
+                                        <div class="post-review-content">
+                                            <div class="post-review-content-header">
+                                                <div class="post-review-header-item">
+                                                    <h3>{% trans review.name %}</h3>
+                                                    <p>{{ review.timestamp|date:"d F Y" }}</p>
+                                                </div>
+                                                <div class="post-review-header-item">
+                                                    <a href="#" class="post-review-btn">{% trans "Reply" %}</a>
+                                                </div>
+                                            </div>
+                                            <p>{{ review.message }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% empty %}
+                                    <p>{% trans "No reviews yet." %}</p>
+                                {% endfor %}
+                            </div>
+                            <div class="post-comment-area mt-40">
+                                <div class="sub-section-title">
+                                    <h2 class="sub-section-title-heading">{% trans "Leave A Review" %}</h2>
+                                </div>
+                                <form class="contact-form" method="POST" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="form-group mb-20">
+                                                {{ form.as_p }}
+                                                <button class="btn main-btn full-width" type="submit">{% trans "Send A Review" %}</button>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div id="msgSubmit"></div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="related-product-section pb-100">
+    <div class="container">
+        <div class="section-title section-title-left text-start">
+            <h2>{% trans "Related Products" %}</h2>
+        </div>
+        <div class="related-product-carousel default-carousel owl-carousel owl-theme">
+            {% for prod in product %}
+            <div class="item">
+                <div class="product-card">
+                    <div class="product-card-thumb">
+                        <a href="{% url 'single_product' slug=prod.slug %}">
+                            <img src="{{ prod.image.url }}" alt="product">
+                        </a>
+                    </div>
+                    <div class="product-card-details">
+                        <h3><a href="{% url 'single_product' slug=prod.slug %}">{% trans prod.name %}</a></h3>
+                        <ul class="review-star-list">
+                            <li class="starred"><i class="icofont-star"></i></li>
+                            <li class="starred"><i class="icofont-star"></i></li>
+                            <li class="starred"><i class="icofont-star"></i></li>
+                            <li class="starred"><i class="icofont-star"></i></li>
+                            <li class="starred"><i class="icofont-star"></i></li>
+                        </ul>
+                        <h4 class="product-price">{% trans "$" %}{{ prod.price }}</h4>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

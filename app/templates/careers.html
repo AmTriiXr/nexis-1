@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+{% block title %}{% trans "Careers" %} |{% endblock title %}
+{% block content %}
+{% block class %}bg-white{% endblock class %}
+
+
+<header class="inner-page-header">
+    <div class="container">
+        <div class="inner-header-content">
+            <h1>{% trans "Careers" %}</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="{% url 'index' %}">{% trans "Home" %}</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">{% trans "Careers" %}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<section class="job-section pt-100 pb-70">
+    <div class="container">
+        <div class="section-title">
+            <small>{% trans "Skailar Jobs" %}</small>
+            <h2>{% trans "Come build belonging with us" %}</h2>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-6 col-lg-4 pb-30">
+                <div class="job-card">
+                    <div class="job-card-title">
+                        <h3>{% trans "Assistant Programmer" %}</h3>
+                        <h4>{% trans "New York, USA" %}</h4>
+                        <p>{% trans "Skailar" %}</p>
+                    </div>
+                    <div class="job-card-brief">
+                        <p>{% trans "Assistant Programmers work closely with senior programmers and other members of the development team to learn new programming languages, development methodologies, and industry-specific tools. They must be willing to learn and take on new challenges, possess excellent communication skills, and be able to follow directions." %}</p>
+                    </div>
+                    <a href="{% url 'contact' %}" class="btn main-btn">{% trans "Apply Now" %}</a>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4 pb-30">
+                <div class="job-card">
+                    <div class="job-card-title">
+                        <h3>{% trans "Senior Associate" %}</h3>
+                        <h4>{% trans "New York, USA" %}</h4>
+                        <p>{% trans "Skailar" %}</p>
+                    </div>
+                    <div class="job-card-brief">
+                        <p>{% trans "A Senior Associate is a professional who has several years of experience in a specific industry or field and has demonstrated their expertise and proficiency in their area of work. They typically have a higher level of responsibility than an Associate and may also have some management responsibilities, such as overseeing junior team members." %}</p>
+                    </div>
+                    <a href="{% url 'contact' %}" class="btn main-btn">{% trans "Apply Now" %}</a>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4 pb-30 offset-md-3 offset-lg-0">
+                <div class="job-card">
+                    <div class="job-card-title">
+                        <h3>{% trans "Junior Programmer" %}</h3>
+                        <h4>{% trans "New York, USA" %}</h4>
+                        <p>{% trans "Skailar" %}</p>
+                    </div>
+                    <div class="job-card-brief">
+                        <p>{% trans "A Junior Programmer is an entry-level position in the field of programming. They are typically recent graduates or individuals with little to no professional experience in the industry. As a Junior Programmer, their main responsibility is to assist senior developers in designing, coding, and testing software applications." %}</p>
+                    </div>
+                    <a href="{% url 'contact' %}" class="btn main-btn">{% trans "Apply Now" %}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
